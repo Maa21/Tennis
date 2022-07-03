@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+Options All -Indexes
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# # Enable expirations
+# ExpiresActive On
+# # HTML
+# ExpiresByType text/html "access plus 2 days"
